@@ -7,18 +7,18 @@
     <title>MOVIESEARCHER</title>
     <link rel="stylesheet" href="./style.css" />
 </head>
-<header>
-    <h1 class="title">MOVIESEARCHER</h1>
-</header>
-<form class="search" onsubmit="handleSearch(event)">
-    <label> 영화 검색하기 : </label>
-    <input type="text" id="searchinput" placeholder="영화 제목을 입력해주세요" />
-    <button type="submit" id="searchbtn">검색!</button>
-</form>
-<section class="cardlist">
-</section>
 
 <body>
+    <header>
+        <h1 class="title">MOVIESEARCHER</h1>
+    </header>
+    <form class="search">
+        <label> 영화 검색하기 : </label>
+        <input type="text" id="search-input" placeholder="영화 제목을 입력해주세요" />
+        <button type="submit" id="search-btn">검색!</button>
+    </form>
+    <section class="cardlist">
+    </section>
     <script src="./moviesearch.js"></script>
 </body>
 

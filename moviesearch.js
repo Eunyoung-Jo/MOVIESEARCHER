@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const searchForm = document.querySelector('.search');
-    const searchInput = document.getElementById('searchinput');
+    const searchInput = document.getElementById('search-input');
     const cardList = document.querySelector('.cardlist');
-    let moviesData = null; // 받아온 영화 데이터 저장할 변수 지정
+    let moviesData = null;
 
     function loadMovies() {
         fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterMovies() {
-        const searchTerm = searchInput.value.trim().toLowerCase(); // 입력된 검색어를 소문자로 변환
+        const searchTerm = searchInput.value.trim().toLowerCase();
 
         // 기존 카드 리스트 초기화
         cardList.innerHTML = '';
 
         moviesData.forEach(movie => {
-            const title = movie.title.toLowerCase(); // 각 영화의 제목을 소문자로 변환
+            const title = movie.title.toLowerCase();
 
             if (title.includes(searchTerm)) {
                 const card = document.createElement('div');
@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.appendChild(pOverview);
                 card.appendChild(pVoteAverage);
 
-                // 영화 카드에 클릭 이벤트 추가
                 card.addEventListener('click', function () {
                     alert(`선택한 영화의 ID는 ${movie.id}입니다.`);
                 });
@@ -67,30 +66,21 @@ document.addEventListener('DOMContentLoaded', function () {
     loadMovies();
 
     searchForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // 기본 이벤트 동작 방지
+        event.preventDefault();
 
         filterMovies();
     });
 
     searchInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); // 기본 이벤트 동작 방지
+            event.preventDefault();
 
             filterMovies();
         }
     });
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const searchInput = document.getElementById('searchinput');
-    //     searchInput.focus();
-    // }); 이렇게 했더니 새로고침 시 커서 로딩이 안됨
-
     window.onload = function () {
-        const searchInput = document.getElementById('searchinput');
+        const searchInput = document.getElementById('search-input');
         searchInput.focus();
     };
-    // 페이지가 완전히 로드되기 전 스크립트가 실행됨
-    // 이슈 해결 위해 window.onload 이벤트 사용해서 페이지의 모든 리소스 로드 후 실행될 수 있게 함
-
-
 });
